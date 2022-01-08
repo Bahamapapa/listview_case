@@ -16,20 +16,27 @@ class ContactsPage extends StatefulWidget {
 
 class _ContactsPageState extends State<ContactsPage> {
 
-  final url = "https://jsonplaceholder.typicode.com/posts";
+  final url = "https://jsonplaceholder.typicode.com/posts/";
 
   void fetchPosts() async {
     try {
-      final response = await get(Uri.parse(url));
 
-      final List<Post> jsonData = jsonDecode(response.body);
+      final response = await get(Uri.parse(url));
+      final jsonData = jsonDecode(response.body);
 
       setState(() {
-        users = jsonData;
+
+        for (var i = 0; i < jsonData.length; i++) {
+          final post = jsonData[i];
+          Post record = Post(UserID: post["userId"],
+              id: post["id"],
+              Title: post["title"],
+              Body: post['body']);
+          users.add(record);
+        }
       });
 
-
-    } catch (err){}
+    } catch (err){throw Exception('Failed to load json $err');}
 
   }
 
@@ -45,7 +52,7 @@ class _ContactsPageState extends State<ContactsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Контакты"),
+          title: Text("Posts"),
         ),
         body: Container(
           child: ContactList(users),
@@ -83,11 +90,11 @@ class ContactItem extends StatelessWidget {
   Widget _buildTiles(BuildContext context, Post user) {
     return ListTile(
       title: Text(user.Title),
-      subtitle: Text("ID ${user.id}"),
+      subtitle: Text("ID Автора ${user.UserID}"),
       leading: CircleAvatar(
-        child: Text(user.Title[0]),
+        child: Text("${user.id}"),
       ),
-      trailing: Icon(Icons.phone_enabled),
+      trailing: Icon(Icons.local_post_office),
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(

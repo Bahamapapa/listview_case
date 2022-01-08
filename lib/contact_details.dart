@@ -14,14 +14,21 @@ class ContactViewPage extends StatelessWidget {
         ),
         body: Container(
           width: double.infinity,
+            margin: const EdgeInsets.only(top: 50),
           child: Column(
           children: [
             const SizedBox(
               height: 12,
             ),
-            Text('Телефон: ${user.UserID}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
-            Text('Должность: ${user.id}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
-            Text('Компания: ${user.Body}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
+            Text('User ID: ${user.UserID}', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 60))),
+            const SizedBox(
+              height: 12,
+            ),
+            Text('Title:\n${user.Title}', textAlign: TextAlign.center, style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
+            const SizedBox(
+              height: 12,
+            ),
+            Text('Body text:\n\n${user.Body}', style: TextStyle(fontSize: 18, color: Color.fromRGBO(0, 0, 0, 60))),
 
   ]
         )
