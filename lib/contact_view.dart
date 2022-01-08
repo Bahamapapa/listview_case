@@ -4,7 +4,7 @@ import 'contact_details.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-<List>Post users = [];
+List<Post> users = [];
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _ContactsPageState extends State<ContactsPage> {
     try {
       final response = await get(Uri.parse(url));
 
-      final jsonData = jsonDecode(response.body) as Post;
+      final jsonData = jsonDecode(response.body) /*as Post*/;
 
       setState(() {
         users = jsonData;
@@ -64,7 +64,7 @@ class ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      itemCount: postsJson.length,
+      itemCount: users.length,
       itemBuilder: _buildContacts,
     );
   }
@@ -82,10 +82,10 @@ class ContactItem extends StatelessWidget {
 
   Widget _buildTiles(BuildContext context, Post user) {
     return ListTile(
-      title: Text(user.Name),
-      subtitle: Text(user.Phone),
+      title: Text(user.Title),
+      subtitle: Text("ID ${user.id}"),
       leading: CircleAvatar(
-        child: Text(user.Name[0]),
+        child: Text(user.Title[0]),
       ),
       trailing: Icon(Icons.phone_enabled),
       onTap: () {
@@ -95,7 +95,7 @@ class ContactItem extends StatelessWidget {
               return ContactViewPage(user: user,);
                return Scaffold(
                  appBar: AppBar(
-                   title: Text(user.Name)
+                   title: Text(user.Title)
                  ),
                  body: Text('Hello'),
                );

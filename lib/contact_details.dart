@@ -10,7 +10,7 @@ class ContactViewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(user.Name),
+          title: Text(user.Title),
         ),
         body: Container(
           width: double.infinity,
@@ -19,9 +19,9 @@ class ContactViewPage extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            Text('Телефон: ${user.Phone}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
-            Text('Должность: ${user.Data}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
-            Text('Компания: ${user.Company}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
+            Text('Телефон: ${user.UserID}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
+            Text('Должность: ${user.id}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
+            Text('Компания: ${user.Body}', style: TextStyle(fontSize: 16, color: Color.fromRGBO(0, 0, 0, 60))),
 
   ]
         )
