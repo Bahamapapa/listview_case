@@ -1,11 +1,14 @@
-class User {
-  final String Name;
-  final String Phone;
-  final String Data;
-  final String Company;
+class Post {
+  final int UserID;
+  final int id;
+  final String Title;
+  final String Body;
 
-  const User({required this.Name, required this.Phone, required this.Data, required this.Company});
+  const Post({required this.UserID, required this.id, required this.Title, required this.Body});
+
 }
+
+/*
 
 const List<User> users = const <User>[
   const User(Name: 'Александр Новиков', Phone: '+7 555 230 12 15', Data: 'Начальник отдела', Company: 'Роснефть'),
@@ -25,4 +28,4 @@ const List<User> users = const <User>[
   const User(Name: 'Петр Первый', Phone: '+7 555 244 41 43', Data: 'Начальник отдела', Company: 'Роснефть'),
   const User(Name: 'Родион Нахапетов', Phone: '+7 555 245 43 45', Data: 'Начальник отдела', Company: 'Роснефть'),
   const User(Name: 'Сергей Науменко', Phone: '+7 555 246 45 47', Data: 'Начальник отдела', Company: 'Роснефть')
-];
+];*/

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'contact_data.dart';
 
 class ContactViewPage extends StatelessWidget {
-  final User user;
+  final Post user;
 
   ContactViewPage({required this.user}) ;
 

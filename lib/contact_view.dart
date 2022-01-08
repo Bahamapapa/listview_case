@@ -1,15 +1,45 @@
 import 'package:flutter/material.dart';
 import 'contact_data.dart';
 import 'contact_details.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+
+<List>Post users = [];
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({Key? key}) : super(key: key);
+
 
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
 
 class _ContactsPageState extends State<ContactsPage> {
+
+  final url = "https://jsonplaceholder.typicode.com/posts";
+
+  void fetchPosts() async {
+    try {
+      final response = await get(Uri.parse(url));
+
+      final jsonData = jsonDecode(response.body) as Post;
+
+      setState(() {
+        users = jsonData;
+      });
+
+
+    } catch (err){}
+
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    fetchPosts();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +55,8 @@ class _ContactsPageState extends State<ContactsPage> {
 }
 
 class ContactList extends StatelessWidget {
-  final List<User> _users;
+  final List _users;
+
 
   ContactList(this._users);
 
@@ -33,7 +64,7 @@ class ContactList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      itemCount: _users.length,
+      itemCount: postsJson.length,
       itemBuilder: _buildContacts,
     );
   }
@@ -47,9 +78,9 @@ class ContactList extends StatelessWidget {
 class ContactItem extends StatelessWidget {
   const ContactItem(this.user);
 
-  final User user;
+  final Post user;
 
-  Widget _buildTiles(BuildContext context, User user) {
+  Widget _buildTiles(BuildContext context, Post user) {
     return ListTile(
       title: Text(user.Name),
       subtitle: Text(user.Phone),
