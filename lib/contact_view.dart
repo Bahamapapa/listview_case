@@ -22,7 +22,7 @@ class _ContactsPageState extends State<ContactsPage> {
     try {
       final response = await get(Uri.parse(url));
 
-      final jsonData = jsonDecode(response.body) /*as Post*/;
+      final List<Post> jsonData = jsonDecode(response.body);
 
       setState(() {
         users = jsonData;
