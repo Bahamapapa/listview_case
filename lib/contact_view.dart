@@ -4,7 +4,7 @@ import 'contact_details.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-List<Post> users = [];
+late List<Post> users = [];
 
 class ContactsPage extends StatefulWidget {
   const ContactsPage({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
   final url = "https://jsonplaceholder.typicode.com/posts/";
 
-  void fetchPosts() async {
+  Future<void> fetchPosts() async {
     try {
 
       final response = await get(Uri.parse(url));
@@ -43,6 +43,7 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   void initState(){
     super.initState();
+
     fetchPosts();
   }
 
@@ -63,7 +64,6 @@ class _ContactsPageState extends State<ContactsPage> {
 
 class ContactList extends StatelessWidget {
   final List _users;
-
 
   ContactList(this._users);
 
